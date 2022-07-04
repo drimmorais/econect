@@ -1,0 +1,94 @@
+$color-font: #fafafa;
+$color-base: #326700;
+$color-base2: #acbf60;
+$color-grey: #e7ebea;
+$pink: #eeb29c;
+$red: #be4e2b;
+$font: "Montserrat", sans-serif;
+
+.mat-card-image {
+    height: 150px;
+    border-radius: 0px;
+}
+
+.mat-card {
+    width: min(300px, 80vw);
+    margin-bottom: 20px;
+    margin-left: min(20px, 0px);
+    background-color: rgb(229, 231, 231);
+}
+
+.content {
+    padding: 16px;
+}
+
+.flex-me {
+    display: inline-flex;
+    flex-flow: row wrap;
+    background: grey;
+}
+
+#title {
+    color: $color-base;
+    font-size: 16px;
+    font-family: $font;
+    font-weight: 600;
+}
+
+p {
+    color: $color-base;
+    font-size: 13px;
+    font-family: $font;
+    font-weight: bold;
+}
+
+.mat-button {
+    background-color: $color-base2;
+    border-radius: 21px;
+    width: 100px;
+    color: $color-base;
+    font-weight: bold;
+    font-family: $font;
+}
+
+.content {
+    margin-top: 5%;
+}
+
+h2 {
+    font-family: $font;
+    color: $color-base;
+    font-size: 20px;
+    font-weight: bolder;
+    padding-top: 50px;
+    padding-left: 20px;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+    background-color: rgba(229, 231, 231, 0.9);
+}
+
+form {
+    padding: 50px;
+    padding-top: 20px;
+}
+
+label {
+    font-family: $font;
+    color: $color-base;
+    font-weight: bold;
+}
+
+.ng-select {
+    width: 400px;
+}
+
+.center img{
+    width: min(55%, 100%);
+}
+
+.center{
+    text-align: center;
+}

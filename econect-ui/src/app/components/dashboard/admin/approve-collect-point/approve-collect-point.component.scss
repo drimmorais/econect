@@ -1,0 +1,138 @@
+$color-font: #fafafa;
+$color-base: #326700;
+$color-base2: #acbf60;
+$color-grey: #e7ebea;
+$pink: #eeb29c;
+$red: #be4e2b;
+$font: "Montserrat", sans-serif;
+
+mat-icon {
+    font-size: 95%;
+    font-weight: bolder;
+}
+
+.mat-mini-fab {
+    width: 28px !important;
+    height: 28px !important;
+    margin-right: 15px;
+}
+
+h3 {
+    font-family: $font;
+    color: $color-base;
+    font-size: 20px;
+    font-weight: bolder;
+    padding-top: 20px;
+    padding-left: 20px;
+    text-align: center;
+}
+
+#info {
+    background-color: #00acea;
+}
+
+#ok {
+    background-color: #3bb54a;
+}
+
+#delete {
+    background-color: #d7443e;
+}
+
+.icon_add {
+    text-align: center;
+}
+
+h2 {
+    font-family: $font;
+    color: $color-base;
+    font-size: 20px;
+    font-weight: bolder;
+    padding-top: 50px;
+    padding-left: 20px;
+}
+
+th {
+    background-color: $color-base2;
+    color: $color-font;
+    font-family: $font;
+    font-weight: bold;
+}
+
+td {
+    background-color: $color-font;
+    border: 1px solid $color-base2;
+    color: $color-base;
+    font-family: $font;
+    font-weight: bold;
+}
+
+.center img {
+    width: min(55%, 100%);
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+    background-color: $color-grey;
+}
+
+.modal-body{
+
+}
+
+
+.row{
+    padding: 5px;
+}
+
+
+#btn, #btn-exc {
+    font-family: $font;
+    font-weight: bold;
+    width: 30%;
+    border: none;
+    color: $color-font;
+    background-color: $color-base2;
+}
+
+#btn-exc{
+    background-color: $red;
+}
+
+#btn-cancel {
+    background-color: $color-grey;
+    color: $color-base;
+    border-color: $color-base;
+}
+
+h4{
+    color: $color-base;
+    font-family: $font;
+    font-weight: bold;
+    font-family: $font;
+}
+
+p {
+    padding-top: 3px;
+    font-family: $font;
+    font-size: min(15px, 4vw);
+    font-weight: 600;
+    padding-right: 20px;
+    color: $color-base;
+}
+
+.card{
+    background-color: $color-font;
+    border-radius: 5px;
+    border: none;
+    padding-top: 10px;
+    padding-left: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.leftM{
+    margin-left: 65px;
+}
+

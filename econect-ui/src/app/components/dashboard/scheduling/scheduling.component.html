@@ -1,0 +1,291 @@
+<div class="container">
+    <h2>{{'SCHEDULING' | translate}}</h2>
+    <br>
+    <div class="content">
+        <div class="row">
+            <div class="col-4 calendar">
+                <bs-datepicker-inline [bsValue]="bsInlineValue"></bs-datepicker-inline>
+            </div>
+            <div class="col-8">
+                <mat-card class="base">
+                    <h4 class="text-center">{{bsInlineValue | date: 'MMMM d, y'}}</h4>
+                    <div class="row">
+                        <div class="col-2 pr-1">
+                            <mat-card class="front pt-5">
+                                <p class="hours text-center">08:00</p>
+                            </mat-card>
+                        </div>
+                        <div class="col-10 pl-0">
+                            <mat-card class="front">
+                                <div *ngFor="let scheduling of schedulings">
+                                    <mat-card *ngIf="scheduling.status === 'EM ANDAMENTO'"
+                                        [style.background]="'#ACBF60'" class="collect pt-0 pb-0 mb-2">
+                                        <div class="row">
+                                            <div class="col-10 pt-3 pb-3">
+                                                <mat-icon style="font-size: 18px; cursor: pointer;"
+                                                    (click)="openInfo(info, scheduling)">info</mat-icon>
+                                                <p style="color: #326700;" class="title mb-0">
+                                                    {{scheduling.collect_point_name}} (Em progresso)</p>
+                                                <p style="color: #326700;" class="desc">
+                                                    {{scheduling.type_material_description}}</p>
+                                                <p style="color: #326700;" class="desc">{{scheduling.delivery |
+                                                    translate}}</p>
+                                            </div>
+                                            <div *ngIf="!view" class="col-2 pr-0">
+                                                <div id="andamento" *ngIf="!view"
+                                                    class="ripple-container mb-1 text-center" matRipple>
+                                                    <mat-icon (click)="openModal(delivered, scheduling.operation_id)"
+                                                        class="pt-4">done</mat-icon>
+                                                </div>
+                                                <div id="andamento" class="ripple-container text-center" matRipple>
+                                                    <a (click)="openModal(chat)" target="_blank">
+                                                        <mat-icon class="pt-4">chat_bubble_outline</mat-icon>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="view" class="col-2 pr-0">
+                                                <div id="andamento2" *ngIf="view"
+                                                    class="ripple-container mb-1 text-center" matRipple>
+                                                    <mat-icon (click)="openModal(concluded, scheduling.operation_id)"
+                                                        class="pt-4">done</mat-icon>
+                                                </div>
+                                                <div id="andamento2" *ngIf="view"
+                                                    class="mb-1 ripple-container text-center" matRipple>
+                                                    <mat-icon (click)="openModal(delete, scheduling.operation_id)"
+                                                        class="pt-4">close</mat-icon>
+                                                </div>
+
+                                                <div id="andamento2" class="ripple-container text-center" matRipple>
+                                                    <a (click)="openModal(chat)" target="_blank">
+                                                        <mat-icon class="pt-4">chat_bubble_outline</mat-icon>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-card>
+
+                                    <mat-card *ngIf="scheduling.status === 'ENTREGUE'" [style.background]="'#56B300'"
+                                        class="collect pt-0 pb-0 mb-2">
+                                        <div class="row">
+                                            <div class="col-10 pt-3 pb-3">
+                                                <mat-icon style="font-size: 18px; cursor: pointer;"
+                                                    (click)="openInfo(info, scheduling)">info</mat-icon>
+                                                <p class="title mb-0">{{scheduling.collect_point_name}} (Entregue)</p>
+                                                <p class="desc">{{scheduling.type_material_description}}</p>
+                                                <p class="desc">{{scheduling.delivery | translate}}</p>
+                                            </div>
+                                            <div class="col-2 pr-0">
+                                                <div *ngIf="view" class="ripple-container mb-1 text-center" matRipple
+                                                    [matRippleColor]="color">
+                                                    <mat-icon (click)="concludedScheduling(scheduling.operation_id)"
+                                                        class="pt-4">done</mat-icon>
+                                                </div>
+                                                <div *ngIf="view" class="ripple-container text-center" matRipple
+                                                    [matRippleColor]="color"
+                                                    (click)="openModal(cancel, scheduling.operation_id)">
+                                                    <mat-icon class="pt-4">close</mat-icon>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-card>
+
+                                    <mat-card *ngIf="scheduling.status === 'NÃO REALIZADO'"
+                                        [style.background]="'#be4e2b'" class="collect pt-0 pb-0 mb-2">
+                                        <div class="row">
+                                            <div class="col-10 pt-3 pb-3">
+                                                <mat-icon style="font-size: 18px; cursor: pointer;"
+                                                    (click)="openInfo(info, scheduling)">info</mat-icon>
+                                                <p class="title mb-0">{{scheduling.collect_point_name}} (Não Realizado)
+                                                </p>
+                                                <p class="desc">{{scheduling.type_material_description}}</p>
+                                                <p class="desc">{{scheduling.delivery | translate}}</p>
+                                            </div>
+                                        </div>
+                                    </mat-card>
+
+                                    <mat-card *ngIf="scheduling.status === 'CONCLUIDO'" [style.background]="'#326700'"
+                                        class="collect pt-0 pb-0 mb-2">
+                                        <div class="row">
+                                            <div class="col-10 pt-3 pb-3">
+                                                <mat-icon style="font-size: 18px; cursor: pointer;"
+                                                    (click)="openInfo(info, scheduling)">info</mat-icon>
+                                                <p class="title mb-0">{{scheduling.collect_point_name}} (Concluído)</p>
+                                                <p class="desc">{{scheduling.type_material_description}}</p>
+                                                <p class="desc">{{scheduling.delivery | translate}}</p>
+                                            </div>
+                                        </div>
+                                    </mat-card>
+
+                                    <mat-card *ngIf="scheduling.status === 'PENDENTE'" [style.background]="'#DEDFDF'"
+                                        class="collect pt-0 pb-0 mb-2">
+                                        <div class="row">
+                                            <div class="col-10 pt-3 pb-3">
+                                                <mat-icon style="font-size: 18px; cursor: pointer; color: #1C1c1c;"
+                                                    (click)="openInfo(info, scheduling)">info</mat-icon>
+                                                <p style="color: #1C1c1c;" class="title mb-0">
+                                                    {{scheduling.collect_point_name}} (Pendente)</p>
+                                                <p style="color: #1C1c1c;" class="desc">
+                                                    {{scheduling.type_material_description}}</p>
+                                                <p style="color: #1C1c1c;" class="desc">{{scheduling.delivery |
+                                                    translate}}</p>
+                                            </div>
+                                            <div class="col-2 pr-0">
+                                                <div *ngIf="view" class="ripple-container mb-1 text-center" matRipple
+                                                    [matRippleColor]="color">
+                                                    <mat-icon
+                                                        (click)="inProgress(scheduling.operation_id, scheduling.citizen_id)"
+                                                        class="pt-4">done</mat-icon>
+                                                </div>
+                                                <div *ngIf="view" class="ripple-container text-center" matRipple
+                                                    [matRippleColor]="color">
+                                                    <mat-icon (click)="openModal(delete, scheduling.operation_id)"
+                                                        class="pt-4">close</mat-icon>
+                                                </div>
+                                                <div *ngIf="!view" id="pendente" class="ripple-container text-center"
+                                                    matRipple [matRippleColor]="color">
+                                                    <mat-icon (click)="openModal(cancel, scheduling.operation_id)"
+                                                        class="pt-4">close</mat-icon>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-card>
+
+                                    <mat-card *ngIf="scheduling.status === 'CANCELADO'" [style.background]="'#be4e2b'"
+                                        class="collect pt-0 pb-0 mb-2">
+                                        <div class="row">
+                                            <div class="col-10 pt-3 pb-3">
+                                                <mat-icon style="font-size: 18px; cursor: pointer;"
+                                                    (click)="openInfo(info, scheduling)">info</mat-icon>
+                                                <p class="title mb-0">{{scheduling.collect_point_name}} (Cancelado)</p>
+                                                <p class="desc">{{scheduling.type_material_description}}</p>
+                                                <p class="desc">{{scheduling.delivery | translate}}</p>
+                                            </div>
+                                        </div>
+                                    </mat-card>
+                                </div>
+                            </mat-card>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template class="modal" #delete let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">ENTREGA NÃO REALIZADA</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <b>
+            <h3>Você tem certeza que deseja marcar como não realizada?</h3>
+        </b>
+        <h5>Esta ação não poderá ser desfeita.</h5>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+        <button id="btn-cancel" type="button" class="btn btn-outline-dark col-2"
+            (click)="modal.close('Save click')">Cancelar</button>
+        <button id="btn-exc" type="button" class="btn btn-outline-dark col-2"
+            (click)="refuseScheduling(operation_id_aux); modal.close('Save click')">Confirmar</button>
+    </div>
+</ng-template>
+
+<ng-template class="modal" #concluded let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">CONFIRMAÇÃO DA ENTREGA</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <b>
+            <h3>Você tem certeza que deseja marcar como concluída?</h3>
+        </b>
+        <h5>Esta ação não poderá ser desfeita.</h5>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+        <button id="btn-cancel" type="button" class="btn btn-outline-dark col-2"
+            (click)="modal.close('Save click')">Cancelar</button>
+        <button id="btn-exc" type="button" class="btn btn-outline-dark col-2"
+            (click)="concludedScheduling(operation_id_aux); modal.close('Save click')">Confirmar</button>
+    </div>
+</ng-template>
+
+<ng-template class="modal" #cancel let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">CANCELAR</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <b>
+            <h3>Você tem certeza que deseja cancelar esta entrega?</h3>
+        </b>
+        <h5>Esta ação não poderá ser desfeita.</h5>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+        <button id="btn-cancel" type="button" class="btn btn-outline-dark col-2"
+            (click)="modal.close('Save click')">Cancelar</button>
+        <button id="btn-exc" type="button" class="btn btn-outline-dark col-2"
+            (click)="cancelScheduling(operation_id_aux); modal.close('Save click')">Confirmar</button>
+    </div>
+</ng-template>
+
+<ng-template class="modal" #delivered let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">CONFIRMAÇÃO DA ENTREGA</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <b>
+            <h3>Você tem certeza que deseja marcar como entregue?</h3>
+        </b>
+        <h5>Esta ação não poderá ser desfeita.</h5>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+        <button id="btn-cancel" type="button" class="btn btn-outline-dark col-2"
+            (click)="modal.close('Save click')">Cancelar</button>
+        <button id="btn-exc" type="button" class="btn btn-outline-dark col-2"
+            (click)="deliveredScheduling(operation_id_aux); modal.close('Save click')">Confirmar</button>
+    </div>
+</ng-template>
+
+<ng-template class="modal" id="chat-b" #chat let-modal>
+    <div class="modal-body">
+        <iframe height="500" width="1100" frameBorder="0" src="http://localhost:8100/"></iframe>
+
+    </div>
+</ng-template>
+
+<ng-template class="modal" #info let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">INFORMAÇÃO DO AGENDAMENTO</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex justify-content-end">
+            <div class="card data col-3 pt-2 mb-1">
+                <p class="info_data">{{infos.date_shedule}} - {{infos.time_shedule}}</p>
+            </div>
+        </div>
+
+        <div class="card card-body">
+            <p class="infos_data">Nome: {{infos.citizen_name}}</p>
+            <p class="infos_data">Endereço: {{infos.citizen_address}}</p>
+            <p class="infos_data">Contato: {{infos.citizen_phone}}</p>
+            <p class="infos_data">Materiais: {{infos.type_material_description}}</p>
+        </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+        <button id="btn-cancel" type="button" class="btn btn-outline-dark col-2"
+            (click)="modal.close('Save click')">Ok</button>
+    </div>
+</ng-template>

@@ -1,0 +1,201 @@
+$color-font: #fafafa;
+$color-base: #326700;
+$color-base2: #acbf60;
+$verde: #56B300;
+$color-grey: #e7ebea;
+$pink: #eeb29c;
+$red: #be4e2b;
+$font: "Montserrat", sans-serif;
+
+h2 {
+    font-family: $font;
+    color: $color-base;
+    font-size: 20px;
+    font-weight: bolder;
+    padding-top: 50px;
+    padding-left: 20px;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+    background-color: $color-grey;
+}
+
+.modal #chat-b{
+    border-radius: 20px;
+}
+
+//calendar
+
+::ng-deep .bs-datepicker-container {
+    padding: 0;
+    font-family: $font;
+}
+
+::ng-deep .theme-green .bs-datepicker-head{
+    background-color: $color-base2;
+}
+
+::ng-deep .theme-green .bs-datepicker-body table td.week span {
+    color: $color-base2;
+    font-weight: bold;
+    font-family: $font;
+}
+
+::ng-deep .theme-green .bs-datepicker-body table td span.selected, .theme-green .bs-datepicker-body table td.selected span, .theme-green .bs-datepicker-body table td span[class*=select-]:after, .theme-green .bs-datepicker-body table td[class*=select-] span:after {
+    background-color: $color-base;
+}
+
+.calendar{
+    padding-left: 20px;
+}
+//
+
+//card
+.base{
+    background-color: $color-base2;
+    height: 500px;
+}
+
+.front{
+    background-color: $color-font;
+    height: 410px;
+    font-family: $font;
+}
+
+h4, #modal-basic-title{
+    color: $color-font;
+    font-family: $font;
+    font-weight: bold;
+    font-family: $font;
+}
+
+#modal-basic-title{
+    color: $color-base;
+}
+
+.collect{
+    background-color: $verde;
+    color: $color-font;
+    font-family: $font;
+}
+
+.title{
+    font-size: 14px;
+    font-family: $font;
+
+}
+
+.desc{
+    font-size: 11px;
+    margin-bottom: 0px;
+    font-family: $font;
+}
+
+.hours{
+    color: $color-base2;
+    font-weight: bold;
+    font-family: $font;
+}
+//
+
+//botoes
+.ripple-container{
+    height: 49%;
+    background-color: #81C441;
+    border-radius: 5%;
+}
+//
+
+p {
+    padding-top: 3px;
+    font-family: $font;
+    font-size: min(15px, 4vw);
+    font-weight: 600;
+    padding-right: 20px;
+    color: $color-font;
+}
+
+h5 {
+    font-family: $font;
+    color: #1c1c1c;
+    font-size: 15px;
+    padding-left: 20px;
+    text-align: center;
+}
+
+h3 {
+    font-family: $font;
+    color: $red;
+    font-size: 16px;
+    font-weight: bolder;
+    padding-top: 20px;
+    padding-left: 20px;
+    text-align: center;
+}
+
+#btn, #btn-exc {
+    font-family: $font;
+    font-weight: bold;
+    width: 30%;
+    border: none;
+    color: $color-font;
+    background-color: $color-base2;
+}
+
+#btn-exc{
+    background-color: $red;
+}
+
+#btn-cancel {
+    background-color: $color-grey;
+    color: $color-base;
+    border-color: $color-base;
+}
+
+a{
+    color: $color-font;
+}
+
+#andamento{
+    background-color: #e7ebea;
+    color: #326700;
+    width: 100%;
+}
+
+#chat-b{
+    border-radius: 20px;
+}
+
+#andamento2{
+    background-color: #e7ebea;
+    color: #326700;
+    height: 32%;
+}
+
+
+#pendente{
+    height: 100%;
+    padding-top: 25px;
+}
+
+.infos_data{
+    color: $color-base;
+}
+
+.info_data{
+    text-align: end;
+}
+
+.data{
+    background-color: $pink;
+    border: none;
+    color: $color-font;
+}
+
+.card-body{
+    background-color: $color-font;
+    border-color: #eeb29c;
+    border-left: solid 7px #eeb29c;
+}

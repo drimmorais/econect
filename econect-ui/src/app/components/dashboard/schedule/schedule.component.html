@@ -1,0 +1,213 @@
+<div class="container">
+    <h2>{{'AGENDAR' | translate}}</h2>
+    <div class="content">
+        <mat-card class="card">
+            <mat-card-header>
+                <mat-card-subtitle>1 - Escolha os materiais que você irá entregar</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <ul>
+                    <button (click)="openModal(typeMaterial, plastic.value)" mat-icon-button>
+                        <mat-icon svgIcon="plastic" id="icon"></mat-icon>
+                        <p class="center">{{plastic.label | translate}}</p>
+                    </button>
+                    <button (click)="openModal(typeMaterial, paper.value)" mat-icon-button>
+                        <mat-icon svgIcon="paper" id="icon"></mat-icon>
+                        <p class="center">{{paper.label | translate}}</p>
+                    </button>
+                    <button (click)="openModal(typeMaterial, glass.value)" mat-icon-button>
+                        <mat-icon svgIcon="bottle" id="icon"></mat-icon>
+                        <p class="center">{{glass.label | translate}}</p>
+                    </button>
+                    <button (click)="openModal(typeMaterial, metal.value)" mat-icon-button>
+                        <mat-icon svgIcon="tin" id="icon"></mat-icon>
+                        <p class="center">{{metal.label | translate}}</p>
+                    </button>
+                    <button mat-icon-button>
+                        <mat-icon svgIcon="battery" id="icon"></mat-icon>
+                        <p class="center">Bateria</p>
+                    </button>
+                    <button mat-icon-button>
+                        <mat-icon svgIcon="light" id="icon"></mat-icon>
+                        <p class="center">Lâmpada</p>
+                    </button>
+                    <button mat-icon-button>
+                        <mat-icon svgIcon="oil" id="icon"></mat-icon>
+                        <p class="center">Óleo</p>
+                    </button>
+                    <button [title]="'CONTINUE_DOC' | translate" [disabled]="!category.length" (click)="continue()"
+                        class="continue" mat-icon-button>
+                        <!-- <mat-icon>navigate_next</mat-icon> -->
+                        <mat-icon>arrow_forward</mat-icon>
+                        <p class="center">Continuar</p>
+                    </button>
+                    <button id="acompahar" class="ml-5" *ngIf="category.length" (click)="openModal(materials)" mat-button>Acompanhar materiais
+                        selecionados</button>
+                </ul>
+            </mat-card-content>
+        </mat-card>
+        <br>
+        <br>
+
+        <mat-card class="card" *ngIf="step2">
+            <mat-card-header>
+                <mat-card-subtitle>2 - Pontos disponíveis para coleta</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content class="step-2">
+                <div class="content">
+                    <div fxLayout="row wrap" class="justify-content-center" fxLayoutGap="16px grid">
+                        <div fxFlex="33%" fxFlex.xs="100%" fxFlex.md="43%" *ngFor="let collectPoint of collectPoints">
+                            <mat-card class="mat-elevation-z4" id="cardCP">
+                                <img mat-card-image src="/assets/img/milk.png" alt="Photo of a Shiba Inu">
+                                <mat-card-content>
+                                    <b>
+                                        <p class="d-flex justify-content-center" id="title">
+                                            {{collectPoint.social_reason}}</p>
+                                    </b>
+                                    <p class="d-flex justify-content-center" id="subtitle">{{collectPoint.endereco}}</p>
+                                </mat-card-content>
+                                <mat-card-actions class="d-flex justify-content-center">
+                                    <button mat-button (click)="addCollectPoint(collectPoint.id)">Selecionar</button>
+                                    <button mat-button>Ver mais</button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <br>
+
+        <button *ngIf="step3" id="schedule" (click)="openModal(schedule)" mat-button>Agendar</button>
+        <br>
+        <br>
+    </div>
+</div>
+
+<ng-template class="modal" #schedule let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">AGENDAMENTO DE ENTREGA</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="scheduleForm">
+            <div class="center">
+                <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                    <mat-button-toggle (click)="selectDeliveryType('COMPANY')" value="COMPANY">Entrega no Local
+                    </mat-button-toggle>
+                    <mat-button-toggle (click)="selectDeliveryType('HOME')" value="HOME">Busca em Casa
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label>Data da Entrega</label>
+                        <div class="input-group">
+                            <input class="form-control" type="date" placeholder="dd/mm/yyyy" name="d2"
+                                [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker" formControlName="schedule_date">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label>Hora</label>
+                        <input class="form-control" type="time" placeholder="dd/mm/yyyy" name="d2" [(ngModel)]="time"
+                            ngbDatepicker #d2="ngbDatepicker" formControlName="schedule_hours">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+        <button id="btn" type="button" class="btn btn-outline-dark"
+            (click)="sendSchedule()">Concluir</button>
+    </div>
+</ng-template>
+
+<ng-template class="modal" #typeMaterial let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">ESCOLHA OS MATERIAIS</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="panel" *ngFor="let material of materialSelected">
+            <!-- <mat-card>{{material.description}}</mat-card> -->
+            <mat-expansion-panel class="justify-content-center">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{material.description}}
+                    </mat-panel-title>
+                    <div class="panelDesc">
+                        <div *ngIf="materialsAndQuatity.length">
+                            <div *ngFor="let materialQ of materialsAndQuatity">
+                                <div *ngIf="materialQ.description === material.description">
+                                    <mat-panel-description>
+                                        Quantidade - {{materialQ.weight}}
+                                    </mat-panel-description>
+                                </div>
+                                <mat-panel-description *ngIf="materialQ.description !== material.description">
+                                    Quantidade - 0
+                                </mat-panel-description>
+                            </div>
+                        </div>
+                        <div *ngIf="!materialsAndQuatity.length">
+                            <mat-panel-description>
+                                Quantidade - 0
+                            </mat-panel-description>
+                        </div>
+
+                    </div>
+                </mat-expansion-panel-header>
+                <form [formGroup]="scheduleForm">
+                    <div class="quantity">
+                        <mat-form-field appearance="fill">
+                            <input class="text-center" formControlName="weight" placeholder="Digite a quantidade"
+                                type="number" matInput>
+                        </mat-form-field>
+                        <div class="confirmQ">
+                            <button id="styleB" mat-icon-button>
+                                <mat-icon
+                                    (click)="addQuantity(material.id, scheduleForm.value.weight, material.key_aux, material.description)"
+                                    id="ok">
+                                    check_circle</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </mat-expansion-panel>
+        </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+        <button id="btn" type="button" class="btn btn-outline-dark"
+            (click)="modal.close('Save click')">Concluir</button>
+    </div>
+</ng-template>
+
+<ng-template class="modal" #materials let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">MATERIAIS SELECIONADOS</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div *ngIf="materialsAndQuatity.length">
+        <div class="modal-body" *ngFor="let material of materialsAndQuatity">
+            <p>{{material.description}} - {{material.weight}}</p>
+        </div>
+    </div>
+
+    <div *ngIf="!materialsAndQuatity.length" class="modal-body text-center">
+        <p>{{'Ainda não foi selecionado nenhum material!'}}</p>
+    </div>
+
+    <div class="modal-footer d-flex justify-content-center">
+        <button id="btn" type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Fechar</button>
+    </div>
+</ng-template>

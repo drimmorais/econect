@@ -1,0 +1,128 @@
+<div class="container">
+    <h2>{{'CONFIGURATIONS' | translate}}</h2>
+
+    <div class="configurations">
+        <div *ngIf="tag !== 'citizen'" class="col-12">
+            <mat-card>
+                <div class="row">
+                    <p class="title">Status de funcionamento</p>
+                    <div class="row" id="actions">
+                        <p>ATIVO</p>
+                        <mat-icon (click)="openModal(status)" aria-hidden="false">edit</mat-icon>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <br>
+        <div class="col-12">
+            <mat-card>
+                <div class="row">
+                    <p class="title">Alterar Senha</p>
+                    <div class="row" id="actions">
+                        <mat-icon (click)="openModal(password)" aria-hidden="false">edit</mat-icon>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <br>
+        <div class="col-12">
+            <mat-card>
+                <div class="row">
+                    <p class="title">Excluir conta</p>
+                    <div class="row" id="actions">
+                        <mat-icon (click)="openModal(delete)" aria-hidden="false">edit</mat-icon>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+
+    <ng-template class="modal" #password let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">ALTERAR SENHA</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="passwordForm">
+                <div class="form-group">
+                    <label>Senha Atual</label>
+                    <div class="input-group">
+                        <input class="form-control" formControlName="password" type="password" placeholder="********">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Nova Senha</label>
+                    <div class="input-group">
+                        <input class="form-control" formControlName="new_password" type="password"
+                            placeholder="********">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Confirme a senha</label>
+                    <div class="input-group">
+                        <input class="form-control" formControlName="confirm_password" type="password"
+                            placeholder="********">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <button id="btn" type="button" class="btn btn-outline-dark"
+                (click)="changePassword(passwordForm.value)">Concluir</button>
+        </div>
+    </ng-template>
+
+    <ng-template class="modal" #status let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">STATUS DE FUNCIONAMENTO</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                    <label>Status</label>
+                    <ng-select class="select" [items]="simpleItems" [(ngModel)]="selectedSimpleItem">
+                    </ng-select>
+                </div>
+                <div class="form-group">
+                    <label>Comentário sobre a alteração</label>
+                    <div class="input-group">
+                        <textarea class="form-control" placeholder="....."></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <button id="btn" type="button" class="btn btn-outline-dark"
+                (click)="modal.close('Save click')">Concluir</button>
+        </div>
+    </ng-template>
+
+
+    <ng-template class="modal" #delete let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">EXCLUSÃO DA CONTA</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <b>
+                <h3>Você tem certeza que deseja excluir sua conta?</h3>
+            </b>
+            <h5>Esta ação não poderá ser desfeita.</h5>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <button id="btn-cancel" type="button" class="btn btn-outline-dark col-2"
+            (click)="modal.close('Save click')">Cancelar</button>
+            <button id="btn-exc" type="button" class="btn btn-outline-dark col-2"
+                (click)="modal.close('Save click')">Excluir</button>
+        </div>
+    </ng-template>
+
+    <img src="/assets/img/plantinha.png" alt="">
+</div>

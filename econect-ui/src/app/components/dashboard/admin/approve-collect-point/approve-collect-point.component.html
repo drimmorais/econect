@@ -1,0 +1,166 @@
+<div class="container">
+  <h2>{{'VALIDATIONS' | translate}}</h2>
+
+  <div class="content">
+    <div>
+      <div *ngIf="!tableValidation.length" class="row">
+        <div class="col-12 mt-5">
+          <h3>Não há solicitações à serem validadas no momento!</h3>
+        </div>
+        <div class="col-12">
+          <div class="center text-center"><img class="mt-5" src="assets/img/freshair.png" alt=""></div>
+        </div>
+
+      </div>
+    </div>
+    <table *ngIf="tableValidation.length" class="table table-striped">
+      <thead>
+        <tr>
+          <th class="text-center" scope="col">Ponto de Coleta</th>
+          <th class="text-center" scope="col">Tipo</th>
+          <th class="text-center" scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let validation of tableValidation">
+          <td class="text-center">
+            {{ validation.name }}
+          </td>
+          <td class="text-center">{{ validation.type | translate }}</td>
+          <td>
+            <div class="row justify-content-center">
+              <button (click)="infosApproveCollectPoint(info,validation.type, validation.cnpj)" mat-mini-fab id="info"
+                aria-label="Example icon button with a menu icon">
+                <mat-icon class="icon_add">add</mat-icon>
+              </button>
+              <button (click)="approvesCollectPoint(validation.type, validation.cnpj)" mat-mini-fab id="ok"
+                aria-label="Example icon button with a menu icon">
+                <mat-icon>check</mat-icon>
+              </button>
+              <button *ngIf="!view" (click)="disapprovedUpdates(validation.cnpj)" mat-mini-fab id="delete"
+                aria-label="Example icon button with a menu icon">
+                <mat-icon>close</mat-icon>
+              </button>
+              <button *ngIf="view" (click)="disapprovedNewCollectPoint(validation.cnpj)" mat-mini-fab id="delete"
+                aria-label="Example icon button with a menu icon">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template class="modal" #info let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">INFORMAÇÕES</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="card col-5 leftM">
+        <p>
+          <mat-icon> store_mall_directory</mat-icon>Razão social: {{infoUpdate.social_reason}}
+        </p>
+      </div>
+      <div class="card col-5">
+        <p>
+          <mat-icon> phone</mat-icon>Telefone: {{infoUpdate.phone}}
+        </p>
+      </div>
+      <div class="card col-5 leftM" *ngIf="!view">
+        <p>
+          <mat-icon> business</mat-icon>Cidade: {{infoUpdate.city}}
+        </p>
+      </div>
+      <div class="card col-5" *ngIf="!view">
+        <p>
+          <mat-icon> business</mat-icon>Bairro: {{infoUpdate.district}}
+        </p>
+      </div>
+      <div class="card col-5 leftM" *ngIf="!view">
+        <p>
+          <mat-icon> business</mat-icon>Rua: {{infoUpdate.street}}
+        </p>
+      </div>
+      <div class="card col-5" *ngIf="!view">
+        <p>
+          <mat-icon> business</mat-icon>Número: {{infoUpdate.number}}
+        </p>
+      </div>
+      <div class="card col-5 leftM" *ngIf="!view">
+        <p>
+          <mat-icon> business</mat-icon>CEP: {{infoUpdate.zipcode}}
+        </p>
+      </div>
+      <div class="card col-5" *ngIf="!view">
+        <p>
+          <mat-icon> business</mat-icon>Estado: {{infoUpdate.uf}}
+        </p>
+      </div>
+      <div class="card col-5 leftM" *ngIf="view">
+        <p>
+          <mat-icon> business</mat-icon>Endereço: {{infoUpdate.endereco}}
+        </p>
+      </div>
+      <div class="card col-5 leftM" *ngIf="!view">
+        <p>
+          <mat-icon> category</mat-icon>Tipos de Materiais Aceito: {{infoUpdate.types_of_materials_accepted}}
+        </p>
+      </div>
+      <div class="card col-5 " *ngIf="view">
+        <p>
+          <mat-icon> category</mat-icon>Tipos de Materiais Aceito: {{infoUpdate.types_of_materials_accepted}}
+        </p>
+      </div>
+      <div class="card col-5 leftM" *ngIf="view">
+        <p>
+          <mat-icon> event</mat-icon>Dias de Operação: {{infoUpdate.days_of_operation}}
+        </p>
+      </div>
+      <div class="card col-5" *ngIf="!view">
+        <p>
+          <mat-icon> event</mat-icon>Dias de Operação: {{infoUpdate.days_of_operation}}
+        </p>
+      </div>
+      <div class="card col-5 leftM" *ngIf="!view">
+        <p>
+          <mat-icon> schedule</mat-icon>Hora de Operação: {{infoUpdate.hours_of_operation}}
+        </p>
+      </div>
+      <div class="card col-5" *ngIf="view">
+        <p>
+          <mat-icon> schedule</mat-icon>Hora de Operação: {{infoUpdate.hours_of_operation}}
+        </p>
+      </div>
+      <div class="card col-5 leftM" *ngIf="view">
+        <p>
+          <mat-icon> local_shipping</mat-icon>Tipo de entrega: {{infoUpdate.delivery_type}}
+        </p>
+      </div>
+      <div class="card col-5" *ngIf="!view">
+        <p>
+          <mat-icon> local_shipping</mat-icon>Tipo de entrega: {{infoUpdate.delivery_type}}
+        </p>
+      </div>
+      <div class="card col-5 leftM" *ngIf="!view">
+        <p>
+          <mat-icon> person</mat-icon>Biografia: {{infoUpdate.biography}}
+        </p>
+      </div>
+      <div class="card col-5" *ngIf="view">
+        <p>
+          <mat-icon> person</mat-icon>Biografia: {{infoUpdate.biography}}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-center">
+    <button id="btn-cancel" type="button" class="btn btn-outline-dark col-2"
+      (click)="modal.close('Save click')">Fechar</button>
+  </div>
+</ng-template>

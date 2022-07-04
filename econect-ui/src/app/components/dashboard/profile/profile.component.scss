@@ -1,0 +1,112 @@
+$color-font: #fafafa;
+$color-base: #326700;
+$color-base2: #acbf60;
+$color-grey: #e7ebea;
+$pink: #eeb29c;
+$font: "Montserrat", sans-serif;
+
+h2 {
+    font-family: $font;
+    color: $color-base;
+    font-size: 20px;
+    font-weight: bolder;
+    padding-top: 30px;
+    padding-left: 20px;
+}
+
+h3 {
+    font-family: $font;
+    color: $color-base;
+    font-weight: 300;
+    padding-top: 30px;
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+button {
+    font-size: 12px;
+    margin-left: 20px;
+    background-color: $color-base;
+    font-family: $font;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: #3b7504;
+}
+
+.header {
+    padding-left: 50px;
+    padding-bottom: 10px;
+}
+
+.edit {
+    right: 100%;
+}
+
+form {
+    padding-left: 20px;
+    padding-right: 55px;
+}
+
+label {
+    font-family: $font;
+    color: $color-base;
+    font-size: 15px;
+}
+
+#btn-save {
+    width: 100%;
+}
+
+#save {
+    font-family: $font;
+    font-size: 15px;
+    width: 30%;
+}
+
+.row {
+    padding-bottom: 10px;
+}
+
+.card {
+    background-color: $color-base2;
+    top: 30px;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    border: none;
+}
+
+::ng-deep .form-control:disabled {
+    background-color: #9aac55;
+    color: $color-font;
+    font-family: $font;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.form-control:enabled {
+    border-radius: 10px;
+    // border-color: none;
+    // border-width: 1.5px;
+    color: $color-base;
+}
+
+.select:enabled{
+    color: $color-base2;
+    background-color: $color-font;
+    height: 35px;
+    border-radius: 10px;
+    border-width: 1.5px;
+    border-color: $color-base;
+}
+
+.select:disabled {
+    background-color: #9aac55;
+    color: $color-base2;
+    height: 35px;
+    border-radius: 10px;
+    border-width: 1.5px;
+    border-color: $color-base;
+}

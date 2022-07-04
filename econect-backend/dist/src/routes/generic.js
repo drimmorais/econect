@@ -1,0 +1,26 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const auth_1 = __importDefault(require("../controllers/auth"));
+const user_1 = __importDefault(require("../controllers/user"));
+const citizen_1 = __importDefault(require("../controllers/citizen"));
+const collectPoint_1 = __importDefault(require("../controllers/collectPoint"));
+const ad_1 = __importDefault(require("../controllers/ad"));
+const scheduleCollect_1 = __importDefault(require("../controllers/scheduleCollect"));
+const pendingCollect_1 = __importDefault(require("../controllers/pendingCollect"));
+const calendar_1 = __importDefault(require("../controllers/calendar"));
+const admin_1 = __importDefault(require("../controllers/admin"));
+const router = express_1.default.Router();
+router.use('/auth', auth_1.default);
+router.use('/user', user_1.default);
+router.use('/citizen', citizen_1.default);
+router.use('/collectpoint', collectPoint_1.default);
+router.use('/ad', ad_1.default);
+router.use('/scheduleCollect', scheduleCollect_1.default);
+router.use('/pending-collect', pendingCollect_1.default);
+router.use('/calendar', calendar_1.default);
+router.use('/admin', admin_1.default);
+exports.default = router;

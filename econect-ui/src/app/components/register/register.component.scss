@@ -1,0 +1,263 @@
+
+$color-base: #e7ebea;
+$color-greenB: #326700;
+$color-greenW: #acbf60;
+$font: "Montserrat", sans-serif;
+
+@media (max-width: 1024px) {
+    img {
+        display: none;
+    }
+}
+
+html {
+    margin: 0;
+}
+
+img {
+    margin: 0;
+    margin-right: -14.6px;
+    width: min(250px, 20vw);
+    padding-top: min(370px);
+}
+
+.textArea{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+textarea.mat-input-element{
+    margin: 10px 2px 0;
+}
+
+// ::ng-deep .mat-form-field-infix {
+//     background-color: #fafafa;
+//     border-radius: 5px;
+// }
+
+.mat-stepper-horizontal {
+    margin: 0 auto;
+    margin-top: 8px;
+    background-color: #fafafa;
+    width: min(900px, 80vw);
+}
+
+.mat-form-field {
+    color: black;
+    margin-top: 16px;
+    width: 100%;
+    background-color: #fafafa;
+    font-family: $font;
+    font-weight: 500;
+    font-size: 15px;
+    // padding-left: 10px;
+    // padding-top: 10px;
+}
+
+input.mat-input-element {
+    margin-top: -0.0625em;
+    color: #1c1c1c;
+    padding-top: 3px;
+    padding-left: 10px;
+}
+
+.mat-form-field,
+.mat-label {
+    font-family: $font;
+    font-size: 15px;
+}
+
+::ng-deep .mat-step-header .mat-step-icon {
+    background-color: $color-greenB;
+}
+
+::ng-deep .mat-step-header .mat-step-text-label {
+    color: #000;
+    font-family: $font;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+::ng-deep .mat-stepper-horizontal-line {
+    border-top-color: $color-greenB;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    border: none;
+    padding-left: 10px;
+    padding-top: 10px;
+    color: $color-greenB !important;
+    font-family: $font;
+    font-size: 14px;
+}
+
+::ng-deep .mat-form-field-label {
+    color: $color-greenB !important;
+    font-family: $font;
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+// ::ng-deep .mat-error {
+    
+// }
+
+.btnContinue {
+    font-family: $font;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    background-color: $color-greenW;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.btnContinue:first-child:hover {
+    background-image: linear-gradient(90deg, $color-greenW, $color-greenB, $color-greenW, $color-greenB);
+    background-size: 400%;
+}
+
+.btnContinue:last-child:hover {
+    background-image: linear-gradient(90deg, $color-greenW, $color-greenB, $color-greenW, $color-greenB);
+    background-size: 400%;
+}
+
+.btnContinue:first-child:before,
+.btnContinue:last-child:before {
+    content: "";
+    position: relative;
+    background: inherit;
+    top: -5px;
+    right: -5px;
+    bottom: -5px;
+    left: -5px;
+    filter: blur(20px);
+    opacity: 0;
+    transform: opacity 0.5s;
+}+
+
+.btnContinue:hover:first-child:before,
+.btnContinue:hover:last-child:before {
+    opacity: 1;
+    z-index: -1;
+}
+
+.btnContinue:hover {
+    z-index: 1;
+    animation: glow 5s linear infinite;
+}
+
+@keyframes glow {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 100%;
+    }
+}
+
+::ng-deep .mat-checkbox {
+    color: $color-greenB !important;
+    width: 50px;
+}
+
+::ng-deep .mat-checkbox-checkmark {
+    background-color: $color-greenW !important;
+    color: #fafafa !important;
+}
+
+::ng-deep .mat-checkbox-checkmark-path {
+    color: #fafafa;
+    background-color: #fafafa;
+}
+
+::ng-deep .mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate{
+    background-color: $color-greenW;
+}
+
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled){
+    color: $color-greenB;
+}
+
+.buttonEye {
+    border: none;
+    background-color: $color-base;
+}
+
+.input {
+    border: none;
+    border-radius: 0;
+    color: #1c1c1c;
+    font-weight: 400;
+}
+
+#label {
+    color: #326700;
+    font-weight: 200;
+    padding-left: 10px;
+}
+
+.mat-option {
+    background-color: #fafafa;
+    color: $color-greenB;
+}
+
+.mat-option:hover {
+    background-color: #fafafa;
+}
+
+.matInput {
+    padding-left: 10px;
+}
+
+.mat-select{
+    font-family: $font;
+    font-weight: 100;
+}
+//Bloqueia p stteper
+::ng-deep .mat-horizontal-stepper-header {
+    pointer-events: none !important;
+}
+
+.matButtonE {
+    padding-left: 40px;
+}
+
+.matButtonD {
+    padding-left: 8px;
+}
+
+#icon {
+    color: $color-base;
+}
+
+// .mat-icon-button {
+//     width: min(40px, 5vw);
+// }
+
+p {
+    font-family: $font;
+    color: $color-greenB;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: min(14px, 2vw);
+}
+
+.error{
+    color: #f44336;
+    font-weight: 100;
+    font-size: 11 !important;
+}
+
+span.error.ng-star-inserted{
+    font-size: 11px;
+    font-family: $font;
+    padding-left: 0px;
+}
+
+#clear{
+    font-size: 11px;
+    margin-right: 0px;
+}

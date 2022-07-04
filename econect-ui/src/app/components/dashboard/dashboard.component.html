@@ -1,0 +1,57 @@
+<div class="home">
+    <mat-toolbar class="mat-elevation-z8">
+        <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>
+                menu
+            </mat-icon>
+        </button>
+        <div class="btn-group" id="person" dropdown>
+            <button mat-icon-button id="button-basic" dropdownToggle class="dropdown-toggle"
+                aria-controls="dropdown-basic">
+                <mat-icon>
+                    person
+                </mat-icon>
+            </button>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                <li role="menuitem"><a class="dropdown-item" [routerLink]="['/dashboard/profile']">Meu Perfil</a></li>
+                <li role="menuitem"><a class="dropdown-item"
+                        [routerLink]="['/dashboard/configurations']">Configurações</a></li>
+                <li role="menuitem"><a class="dropdown-item" href="#">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </mat-toolbar>
+    <mat-sidenav-container>
+        <mat-sidenav class="mat-elevation-z8">
+            <img src="/assets/img/logo_branco.png" />
+            <p class="designation">Seja bem-vindo!</p>
+            <div *ngFor="let item of menuItems">
+                <button mat-button class="menu-button" routerLinkActive="active" class="{{item.class}}" [routerLink]="
+                    [item.path]">
+                    <span *ngIf="permission === item.permission || item.permission === 'all' || 
+                    ((item.permission === 'duo' && permission !== 'adm'))">{{item.title}}</span>
+                </button>
+            </div>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+    <footer id="dk-footer" class="dk-footer">
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span>Copyright © 2021, All Right Reserved eConect</span>
+                    </div>
+                    <!-- End Col -->
+                </div>
+                <!-- End Row -->
+            </div>
+            <!-- End Copyright Container -->
+        </div>
+
+    </footer>
+</div>

@@ -1,0 +1,47 @@
+<app-green-nav></app-green-nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h2 class="col-12 ml-3"><mark>{{'CAME_BACK' | translate}}</mark></h2>
+            <br>
+            <form [formGroup]="loginForm" class="col-12">
+                <mat-form-field class="col-12">
+                    <mat-label id="label">{{'EMAIL' | translate}}</mat-label>
+                    <!-- <input type="email" formControlName="email" class="form__field" maxlength="50" required /> -->
+                    <input autocomplete="off" matInput type="email" formControlName="email" maxlength="100" required />
+                    <mat-error *ngIf="loginForm.get('email')?.hasError('required')">{{'REQUIRED_FIELD' |
+                        translate}}</mat-error>
+                    <mat-error *ngIf="loginForm.get('email')?.hasError('email')">{{'INVALID_EMAIL' |
+                        translate}}</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field class="col-12">
+                    <mat-label id="label">{{'PASSWORD' | translate}}</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                    <button class="buttonEye" mat-icon-button matSuffix (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="loginForm.get('password')?.hasError('required')">{{'REQUIRED_FIELD'
+                        | translate}}</mat-error>
+                </mat-form-field>
+                <mat-error class="passInv" *ngIf="invalidPassword">{{'Senha inválida' | translate}}</mat-error>
+                <div class="form-check ml-3">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">{{'REMEMBER_ME' | translate}}</label>
+                </div>
+                <button type="button" class="btn btn-success button col-12" [disabled]="loginForm.invalid"
+                    (click)="login(loginForm.value)">{{'LOGIN' |
+                    translate}}</button>
+            </form>
+            <div class="forgot">
+                <p [routerLink]="'/recover/password'">{{'FORGOT_HERE' | translate}}</p>
+            </div>
+        </div>
+        <div class="col-sm">
+            <img class="img-fluid" src="assets/img/we_login.png"
+                alt="Três pessoas felizes, ao fundo uma montanha e um sol">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+$color-font: #fafafa;
+$color-base: #326700;
+$color-base2: #acbf60;
+$pink: #eeb29c;
+$font: "Montserrat", sans-serif;
+
+ul li a {
+    color: $color-font;
+    padding-right: 40px;
+    font-size: 17px;
+    font-family: $font;
+}
+
+* {
+    background-color: $color-base;
+}
+
+.navbar-toggler {
+    background-color: white !important;
+}
+
+.navbar-toggler-icon {
+    background: $color-base2 !important;
+}
+
+li button {
+    border-radius: 90px;
+    width: 125px;
+    height: 35px;
+    padding-top: 5x;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: $color-base2;
+    font-family: $font;
+}
+
+img {
+    width: 14%;
+}

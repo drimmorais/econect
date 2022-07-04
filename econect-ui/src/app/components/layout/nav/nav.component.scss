@@ -1,0 +1,32 @@
+$color-font: #fafafa;
+$color-base: #326700;
+$font: "Montserrat", sans-serif;
+
+ul li a {
+    color: $color-font;
+    padding-right: 40px;
+    font-size: 17px;
+    font-family: $font;
+}
+
+.navbar-toggler {
+    background-color: white !important;
+}
+
+.navbar-toggler-icon {
+    background: $color-base !important;
+}
+
+li button {
+    border-radius: 90px;
+    width: 125px;
+    height: 35px;
+    padding-top: 4px;
+    font-size: 17px;
+    font-weight: bold;
+    font-family: $font;
+}
+
+img {
+    width: 18%;
+}

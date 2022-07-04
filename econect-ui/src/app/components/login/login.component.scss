@@ -1,0 +1,86 @@
+$color-back: #e7ebea;
+$green-2: #acbf60;
+$green: #326700;
+$pink: #eeb29c;
+$black: #1c1c1c;
+$gray: #9b9b9b;
+$font: "Montserrat", sans-serif;
+
+
+body {
+    background-color: $color-back !important;
+}
+
+img {
+    padding-top: 50px;
+    width: 100%;
+}
+
+.button {
+    width: 100%;
+    border-radius: 30px;
+    border: none;
+    background-color: $green-2;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: $font;
+}
+
+.forgot {
+    color: $green;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 30px;
+    cursor: pointer;
+    font-family: "Montserrat", sans-serif;
+}
+
+.form-check {
+    color: $green;
+    padding-bottom: 30px;
+    padding-top: 5px;
+    font-family: $font;
+}
+
+h2 {
+    padding-top: 100px;
+    padding-bottom: 30px;
+    font-weight: bold;
+}
+
+mark {
+    background-color: $pink;
+    color: $green;
+    font-family: "Montserrat", sans-serif;
+}
+
+
+.icon {
+    font-size: 20px;
+}
+
+.mat-form-field,
+.mat-label {
+    font-family: $font;
+    font-size: 18px;
+}
+
+#label {
+    color: #326700;
+    font-weight: 200;
+}
+
+input{
+    font-size: 14px;
+}
+
+mat-error{
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+.passInv{
+    font-size: 13px;
+    font-family: "Montserrat", sans-serif;
+    margin-left: 14px;
+}

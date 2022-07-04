@@ -1,0 +1,101 @@
+<div class="container">
+    <h2>{{'ECOBLOG' | translate}}</h2>
+    <div class="d-flex justify-content-end">
+        <button *ngIf="permission === 'adm'" mat-button id="btnCreate" (click)="openModal(create)">Criar publicação</button>
+    </div>
+    <div *ngIf="permission !== 'adm'">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+    <!-- <div class="justify-content-center">
+        <img src="/assets/img/card.png" alt="">
+    </div>
+    <div class="justify-content-center">
+        <img src="/assets/img/card.png" alt="">
+    </div> -->
+    <div fxLayout="row wrap" class="justify-content-center" id="top" fxLayoutGap="16px grid">
+        <div class="space" fxFlex="69%" fxFlex.xs="100%" fxFlex.md="43%" *ngFor="let post of ecoPost">
+            <div class="col-12">
+                <img src="/assets/img/image 5.png" alt="">
+            </div>
+            <div class="col-12">
+                <div class="card">
+                    <h3>{{post.title}}</h3>
+                    <!-- <p><b>Escrito por: </b> {{ post.author}}</p> -->
+                    <p>{{post.contents}}</p>
+                    <button class="btn btn-outline-dark" (click)="openModal(postSelected, post.title, post.author, post.contents)" id="read">Ler mais</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template class="modal" #create let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">CRIAR ARTIGO</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="createForm">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Título</label>
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="0" formControlName="title">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Autor</label>
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="0" formControlName="author">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Conteudo</label>
+                        <div class="input-group">
+                            <textarea class="form-control" type="text" placeholder="0"
+                                formControlName="contents"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!-- <label class="col-12">Foto (Clique abaixo para fazer upload de um foto do seu computador)</label>
+                <mat-form-field appearance="outline" class="col-12">
+                    <ngx-mat-file-input formControlName="contentPhoto" placeholder="Basic Input">
+                    </ngx-mat-file-input>
+                    <mat-icon matSuffix>folder</mat-icon>
+                </mat-form-field> -->
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+        <button id="btn" type="button" class="btn btn-outline-dark"
+            (click)="newEcoBlog(createForm.value)">Concluir</button>
+    </div>
+</ng-template>
+
+
+<ng-template class="modal" #postSelected let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <h4><b>Enviado por: {{author}}</b></h4>
+        <div class="content">{{content | json}}</div>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+        <button id="btn" type="button" class="btn btn-outline-dark">Fechar</button>
+    </div>
+</ng-template>

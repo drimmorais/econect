@@ -1,0 +1,179 @@
+{
+  "openapi": "3.0.3",
+  "swaggerDefinition": {
+    "info": {
+      "title": "API - Econect",
+      "version": "1.0",
+      "description": "API para obter informações das chamadas das rotas do sistema Econect.",
+      "contact": {
+        "name": "Fellipe Costa Fagunde, Guilherme Luiz Massini"
+      },
+      "servers": [
+        {
+          "url": "http://localhost:8080",
+          "description": "Servidor Local"
+        }
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Autenticação",
+      "description": "Controle de autenticação de usuário."
+    },
+    {
+      "name": "Anuncio",
+      "description": "Controle dos Anuncios"
+    },
+    {
+      "name": "Cidadão",
+      "description": "Controle dos Cidadãos"
+    },
+    {
+      "name": "Ponto de Coleta",
+      "description": "Controle dos pontos de coletas."
+    },
+    {
+      "name": "Usuário",
+      "description": "Controle dos usuários."
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "authorization",
+        "description": "Token fornecido após o login"
+      }
+    },
+    "parameters": {
+      "id": {
+        "in": "path",
+        "name": "id",
+        "description": "Identificador único (_id)",
+        "schema": {
+          "type": "string"
+        },
+        "required": true
+      },
+      "": {}
+    },
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Identificação do usuário"
+          },
+          "username": {
+            "type": "string",
+            "description": "Usuário para acesso"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nome do usuario que utiliza a conta"
+          },
+          "level": {
+            "type": "string",
+            "description": "Nivel de privilégio do usuário",
+            "enum": [
+              "admin",
+              "intermediário",
+              "básico"
+            ]
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "description": "Objeto de erro genérico",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "responses": {
+      "400": {
+        "description": "Requisição mal formulada, como um erro de validação",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Chave da API inexistente ou inválida",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "auth": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "Sem autorização suficiente para acesso",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Caminho/arquivo não encontrado",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "Erro interno do servidor",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "apis": [
+    "app.ts"
+  ]
+}

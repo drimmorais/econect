@@ -1,0 +1,362 @@
+$color-font: #fafafa;
+$color-base: #326700;
+$color-base2: #acbf60;
+$color-grey: #e7ebea;
+$pink: #eeb29c;
+$red: #be4e2b;
+$font: "Montserrat", sans-serif;
+
+p {
+    color: $color-base;
+    font-size: 14px;
+    font-family: $font;
+    font-weight: bold;
+}
+
+ul {
+    padding-inline-start: 15px;
+}
+
+::ng-deep .mat-radio-outer-circle {
+    border-color: $color-font;
+}
+
+// ::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+//     border-color:$color-grey;
+// }
+.mat-form-field {
+    color: $color-font;
+}
+
+::ng-deep .matInput {
+    border-color: #e7ebea;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle,
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+.mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+    background-color: $red;
+}
+
+.mat-card-content {
+    padding-bottom: 20px;
+}
+
+.step-2 {
+    padding-bottom: 0px;
+}
+
+.card-collect-point {
+    width: 340px;
+    background-color: $color-grey;
+}
+
+mat-card > img {
+    height: 180px;
+    bottom: 0px;
+}
+
+.example-button-row {
+    display: table-cell;
+    width: 490px;
+}
+
+.continue {
+    color: $color-base;
+}
+
+#schedule {
+    background-color: $color-base2;
+    color: $color-font;
+    font-weight: bold;
+    width: 100%;
+    border-radius: 5px;
+    font-family: $font;
+}
+
+.card {
+    background-color: $color-font;
+    border-bottom: 0px;
+    border-top: 0px;
+    border-left: 6px;
+    border-right: 0px;
+    border-style: solid;
+    border-color: $color-base2;
+}
+
+.mat-button {
+    font-family: $font;
+    font-weight: bold;
+    background-color: $color-base;
+    color: $color-font;
+    border-radius: 30px;
+}
+
+#title {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#subtitle {
+    font-weight: 100;
+    font-size: 14px;
+}
+
+#icon {
+    color: $color-base;
+}
+
+.mat-icon-button {
+    background-color: $color-font;
+    margin-right: 25px;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 26px;
+    border: 2.5px;
+    border-style: solid;
+    border-color: $color-base2;
+}
+
+.mat-radio-button {
+    color: $color-font;
+    font-weight: bold;
+    padding-right: 15px;
+}
+
+h2 {
+    font-family: $font;
+    color: $color-base;
+    font-size: 20px;
+    font-weight: bolder;
+    padding-top: 50px;
+    padding-left: 20px;
+}
+
+mat-card-subtitle {
+    font-family: $font;
+    color: $color-base;
+    font-weight: bolder;
+}
+
+h4 {
+    font-family: $font;
+    color: $color-base;
+    font-size: 16px;
+    font-weight: bolder;
+    // padding-top: 30px;
+    padding-left: 50px;
+}
+
+#card-btn {
+    background-color: $color-base;
+    color: $color-font;
+}
+//  ***** MODAL ******
+.modal-header,
+.modal-body,
+.modal-footer {
+    background-color: $color-grey;
+}
+
+form {
+    padding: 50px;
+}
+
+label {
+    font-family: $font;
+    color: $color-base;
+    font-weight: bold;
+}
+
+#btn {
+    font-family: $font;
+    font-weight: bold;
+    border-radius: 21px;
+    width: 20%;
+    border: none;
+    color: $color-font;
+    background-color: $red;
+}
+
+.close {
+    background-color: transparent;
+    color: #326700;
+    font-size: 30px;
+    padding-top: 40px;
+}
+
+#modal-basic-title {
+    font-family: $font;
+    color: $color-base;
+    font-size: 16px;
+    font-weight: bolder;
+    padding-top: 30px;
+    padding-left: 50px;
+}
+//  ***********
+
+mat-button-toggle {
+    display: flexbox;
+    justify-content: center;
+    font-family: $font;
+    background-color: #bd593b;
+    font-weight: bolder;
+    color: $color-grey;
+    height: 35px;
+    font-size: min(12px, 2vw);
+}
+
+.center {
+    justify-content: center;
+    display: flex;
+    padding-bottom: -20px;
+}
+
+::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    bottom: 6px;
+}
+
+.mat-button-toggle-checked {
+    font-family: $font;
+    background-color: rgb(167, 39, 0);
+    font-weight: bolder;
+    color: $color-font;
+}
+
+.toggle-group2 {
+    bottom: 20px;
+    margin-left: min(200px, 5px);
+}
+
+form {
+    padding-top: 20px;
+}
+
+mat-button-toggle-group {
+    bottom: 20px;
+}
+
+.calendar {
+    height: 38px;
+    background-color: $color-base2;
+    border: none;
+}
+
+input .type {
+    color: #326700;
+}
+
+mat-expansion-panel {
+    width: 80%;
+    background-color: $color-font;
+    border-bottom: 0px;
+    border-top: 0px;
+    border-left: 5px;
+    border-right: 0px;
+    border-style: solid;
+    border-color: $color-base2;
+}
+
+mat-panel-title,
+mat-panel-description {
+    color: $color-base;
+    font-family: $font;
+    font-weight: bold;
+}
+
+.panel {
+    justify-content: center;
+    display: flex;
+    padding-bottom: 10px;
+}
+
+.panelDesc {
+    display: flex;
+    right: initial;
+}
+
+mat-form-field {
+    width: 33%;
+}
+
+.quantity {
+    justify-content: center;
+    display: flex;
+}
+
+// ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+//     background-color: transparent;
+//     color: $color-base;
+//     font-family: $font;
+//     font-size: 15px;
+// }
+
+// input{
+//     color: $color-font;
+// }
+
+// ::ng-deep .mat-form-field-underline{
+//     background-color: $color-font;
+// }
+
+::ng-deep .mat-form-field {
+    .mat-input-element {
+        color: $color-base;
+        font-family: $font;
+        font-weight: bold;
+    }
+    .mat-form-field-label {
+        color: $color-font;
+    }
+    .mat-form-field-underline {
+        background-color: $color-font;
+    }
+    .mat-form-field-ripple {
+        background-color: $color-base;
+    }
+    .mat-form-field-required-marker {
+        color: $color-base;
+    }
+}
+
+::ng-deep .mat-form-field.mat-focused {
+    .mat-form-field-label {
+        color: $color-base;
+    }
+    .mat-form-field-ripple {
+        background-color: $color-base;
+    }
+    .mat-form-field-required-marker {
+        color: $color-base;
+    }
+    .mat-input-element {
+        color: $color-base;
+        font-family: $font;
+        font-weight: bold;
+    }
+}
+
+form {
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.confirmQ > .mat-icon-button {
+    width: 1px;
+    height: 1px;
+    padding-top: 10px;
+}
+
+#styleB{
+    border-style: none;
+}
+
+#ok{
+    color: $color-base;
+}
+
+#acompahar{
+    background-color:$color-base2;
+    border-radius: 5px;
+}

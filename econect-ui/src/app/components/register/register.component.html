@@ -1,0 +1,379 @@
+<app-green-nav></app-green-nav>
+<div class="col-sm">
+    <img class="img-fluid" align="right" src="assets/img/register.png" alt="Uma pessoa feliz, ao fundo de plantas">
+</div>
+<div class="container">
+    <mat-horizontal-stepper [linear]="isLinear" class="col-9" #stepper>
+        <mat-step [stepControl]="registerOneForm">
+            <div class="row">
+                <form [formGroup]="registerOneForm">
+                    <div class="col-12">
+                        <ng-template matStepLabel>{{'STEP_1' | translate}}</ng-template>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-12">
+                                <div class="example-button-row">
+                                    <div class="example-flex-container row">
+                                        <div class="col-6 d-flex justify-content-end">
+                                            <p class="text-center">{{'CITIZEN' | translate}}</p>
+                                            <button mat-icon-button [style.background]="colorTwo"
+                                                (click)="choiceCitizen()"
+                                                aria-label="Example icon button with a vertical three dot icon">
+                                                <mat-icon id="icon">person_outline</mat-icon>
+                                            </button>
+                                        </div>
+                                        <div class="col-6 d-flex justify-content-start">
+                                            <button mat-icon-button [style.background]="colorOne"
+                                                (click)="choiceCollectPoint()" aria-label=" Example icon button with a home
+                                                icon">
+                                                <mat-icon id="icon">store_mall_directory</mat-icon>
+                                            </button>
+                                            <p class="text-center">{{'COLLECT POINT' | translate}}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <mat-form-field>
+                            <mat-label>{{'NAME' | translate}}</mat-label>
+                            <input autocomplete="off" matInput type="text" formControlName="name" maxlength="100" required />
+                            <mat-error *ngIf="registerOneForm.get('name')?.hasError('required')">{{'REQUIRED_FIELD' |
+                                translate}}</mat-error>
+                            <mat-error *ngIf="registerOneForm.get('name')?.hasError('minlength')">
+                                <mat-icon>clear</mat-icon> {{'NAME_MIN_LENGTH' | translate}}
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>{{'USERNAME' | translate}}</mat-label>
+                            <input  autocomplete="off" matInput type="text" formControlName="username" maxlength="50" required />
+                            <mat-error *ngIf="registerOneForm.get('username')?.hasError('required')">{{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                            <mat-error *ngIf="registerOneForm.get('username')?.hasError('minlength')">
+                                <mat-icon>clear</mat-icon>{{'USERNAME_MIN_LENGTH' | translate}}
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>{{'EMAIL' | translate}}</mat-label>
+                            <input  autocomplete="off" matInput type="email" formControlName="email" maxlength="100" required />
+                            <mat-error *ngIf="registerOneForm.get('email')?.hasError('required')">{{'REQUIRED_FIELD' |
+                                translate}}</mat-error>
+                            <mat-error *ngIf="registerOneForm.get('email')?.hasError('email')">
+                                <mat-icon>clear</mat-icon>{{'INVALID_EMAIL' | translate}}
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>{{'PASSWORD' | translate}}</mat-label>
+                            <input autocomplete="off" matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                            <button class="buttonEye" mat-icon-button matSuffix (click)="hide = !hide"
+                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="registerOneForm.get('password')?.hasError('required')">{{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                            <mat-error *ngIf="registerOneForm.get('password')?.hasError('pattern')">
+                                <mat-icon>clear</mat-icon>{{'INVALID_PASSWORD' | translate}}
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>{{'CONFIRM_PASSWORD' | translate}}</mat-label>
+                            <input autocomplete="off" matInput [type]="hide ? 'password' : 'text'" formControlName="confirm_password"
+                                maxlength="50" required>
+                            <button class="buttonEye" mat-icon-button matSuffix (click)="hide = !hide"
+                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="registerOneForm.get('confirm_password')?.hasError('required')">
+                                {{'REQUIRED_FIELD' | translate}}</mat-error>
+                        </mat-form-field>
+                        <span class="error" *ngIf="isInvalidPassword">
+                            <mat-icon id="clear" >clear</mat-icon>{{'INVALID_CONFIRM_PASSWORD' | translate}}
+                        </span>
+                        <div class="col-12">
+                            <button mat-button type="button" class="btn btn-success btnContinue"
+                                [disabled]="registerOneForm.invalid"
+                                (click)="saveUser(stepper, registerOneForm.value)">{{'CONTINUE' |
+                                translate}}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </mat-step>
+
+        <mat-step *ngIf="canView" [stepControl]="registerCitizen">
+            <form [formGroup]="registerCitizen">
+                <div class="row">
+                    <ng-template matStepLabel>{{'STEP_2' | translate}}</ng-template>
+                    <div class="col-12">
+                        <mat-form-field>
+                            <mat-label>{{'CPF' | translate}}</mat-label>
+                            <input autocomplete="off" mask="CPF_CNPJ" matInput type="text" formControlName="cpf" maxlength="14" required />
+                            <mat-error *ngIf="registerCitizen.get('cpf')?.hasError('required')">{{'REQUIRED_FIELD' |
+                                translate}}</mat-error>
+                            <mat-error *ngIf="registerCitizen.get('cpf')?.hasError('minlength')">{{'INVALID_CPF' |
+                                translate}}</mat-error>
+                        </mat-form-field>
+                        <p class="error" *ngIf="cpfInvalid">{{'INVALID_CPF' | translate}}.</p>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>{{'PHONE' | translate}}</mat-label>
+                            <input autocomplete="off" matInput mask="(00) 00000-0000" type="text" formControlName="phone" maxlength="15"
+                                required />
+                            <mat-error *ngIf="registerCitizen.get('phone')?.hasError('required')">{{'REQUIRED_FIELD' |
+                                translate}}</mat-error>
+                            <mat-error *ngIf="registerCitizen.get('phone')?.hasError('minlength')">{{'INVALID_PHONE' |
+                                translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>{{'CEP' | translate}}</mat-label>
+                            <input autocomplete="off" matInput mask="00000-000" type="text" formControlName="zipcode" maxlength="9"
+                                required />
+                            <mat-error *ngIf="registerCitizen.get('zipcode')?.hasError('required')">{{'REQUIRED_FIELD' |
+                                translate}}</mat-error>
+                            <mat-error *ngIf="registerCitizen.get('zipcode')?.hasError('minlength')">{{'INVALID_ZIPCODE' |
+                                translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>{{'NUMBER' | translate}}</mat-label>
+                            <input autocomplete="off" matInput type="text" formControlName="number" maxlength="10" required />
+                            <mat-error *ngIf="registerCitizen.get('number')?.hasError('required')">{{'REQUIRED_FIELD' |
+                                translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>{{'STREET' | translate}}</mat-label>
+                            <input autocomplete="off" matInput type="text" formControlName="street" maxlength="100" required />
+                            <mat-error *ngIf="registerCitizen.get('street')?.hasError('required')">{{'REQUIRED_FIELD' |
+                                translate}}</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <mat-label>{{'DISTRICT' | translate}}</mat-label>
+                            <input autocomplete="off" matInput type="text" formControlName="district" maxlength="50" required />
+                            <mat-error *ngIf="registerCitizen.get('district')?.hasError('required')">{{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>{{'CITY' | translate}}</mat-label>
+                            <input autocomplete="off" matInput type="text" formControlName="city" maxlength="100" required />
+                            <mat-error *ngIf="registerCitizen.get('city')?.hasError('required')">{{'REQUIRED_FIELD' |
+                                translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-2">
+                        <mat-form-field>
+                            <mat-label>{{'STATE' | translate}}</mat-label>
+                            <mat-select formControlName="uf" required>
+                                <mat-option *ngFor="let state of states" [value]="state">{{state.uf}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="registerCitizen.get('state')?.hasError('required')">{{'REQUIRED_FIELD' |
+                                translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <mat-form-field class="textArea">
+                        <mat-label>{{'BIOGRAPHY' | translate}}</mat-label>
+                        <textarea matInput formControlName="biography" maxlength="400"></textarea>
+
+                    </mat-form-field>
+                    <div class="col-12">
+                        <button mat-button type="button" class="btn btn-success btnContinue"
+                            [disabled]="registerCitizen.invalid" (click)="saveCitizen()">
+                            {{'REGISTER' |
+                            translate}}</button>
+                    </div>
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step *ngIf="!canView" [stepControl]="registerCollectPoint">
+            <form [formGroup]="registerCollectPoint">
+                <div class="row">
+                    <ng-template matStepLabel>{{'STEP_2' | translate}}</ng-template>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>{{'CNPJ' | translate}}</mat-label>
+                            <input autocomplete="off"mask="CPF_CNPJ" matInput type="text" formControlName="cnpj" maxlength="18"
+                                required />
+                            <mat-error *ngIf="registerCollectPoint.get('cnpj')?.hasError('required')">{{'REQUIRED_FIELD'
+                                | translate}}. {{' Somente números'}}</mat-error>
+                            <mat-error *ngIf="registerCollectPoint.get('cnpj')?.hasError('minlength')">{{'INVALID_CNPJ'
+                                | translate}}</mat-error>
+                        </mat-form-field>
+                        <p class="error" *ngIf="cnpjInvalid">{{'INVALID_CNPJ' | translate}}.</p>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>{{'SOCIAL_REASON' | translate}}</mat-label>
+                            <input autocomplete="off" matInput type="text" formControlName="social_reason" maxlength="100" required />
+                            <mat-error *ngIf="registerCollectPoint.get('social_reason')?.hasError('required')">
+                                {{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>{{'PHONE' | translate}}</mat-label>
+                            <input autocomplete="off" mask="(00) 00000-0000" matInput type="tel" formControlName="phone" maxlength="15"
+                                required />
+                            <mat-error *ngIf="registerCollectPoint.get('phone')?.hasError('required')">
+                                {{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                            <mat-error *ngIf="registerCollectPoint.get('phone')?.hasError('minlength')">
+                                {{'INVALID_PHONE' | translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>{{'CEP' | translate}}</mat-label>
+                            <input autocomplete="off" mask="00000-000" matInput type="text" formControlName="zipcode" maxlength="9"
+                                required />
+                            <mat-error *ngIf="registerCollectPoint.get('zipcode')?.hasError('required')">
+                                {{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                            <mat-error *ngIf="registerCollectPoint.get('zipcode')?.hasError('minlength')">
+                                {{'INVALID_ZIPCODE' | translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>{{'NUMBER' | translate}}</mat-label>
+                            <input autocomplete="off" matInput type="text" formControlName="number" maxlength="4" required />
+                            <mat-error *ngIf="registerCollectPoint.get('number')?.hasError('required')">
+                                {{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>{{'STREET' | translate}}</mat-label>
+                            <input autocomplete="off" matInput type="text" formControlName="street" maxlength="100" required />
+                            <mat-error *ngIf="registerCollectPoint.get('street')?.hasError('required')">
+                                {{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field>
+                            <mat-label>{{'DISTRICT' | translate}}</mat-label>
+                            <input autocomplete="off" matInput type="text" formControlName="district" maxlength="50" required />
+                            <mat-error *ngIf="registerCollectPoint.get('district')?.hasError('required')">
+                                {{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>{{'CITY' | translate}}</mat-label>
+                            <input autocomplete="off" matInput type="text" formControlName="city" maxlength="100" required />
+                            <mat-error *ngIf="registerCollectPoint.get('city')?.hasError('required')">{{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-2">
+                        <mat-form-field>
+                            <mat-label>{{'STATE' | translate}}</mat-label>
+                            <mat-select formControlName="uf" required>
+                                <mat-option *ngFor="let state of states" [value]="state">{{state.uf}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="registerCollectPoint.get('state')?.hasError('required')">
+                                {{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>{{'DAY_OF_OPERATION' | translate}}</mat-label>
+                            <mat-select formControlName="initial_day" required>
+                                <mat-option *ngFor="let day of days" [value]="day">{{day.label | translate}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="registerCollectPoint.get('initial_day')?.hasError('required')">
+                                {{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>{{'DAY_OF_OPERATION' | translate}}</mat-label>
+                            <mat-select formControlName="finish_day" required>
+                                <mat-option *ngFor="let day of days" [value]="day">{{day.label | translate}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="registerCollectPoint.get('finish_day')?.hasError('required')">
+                                {{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>{{'TYPES_MATERIAL' | translate}}</mat-label>
+                            <mat-select formControlName="types_of_materials_accepted" multiple required>
+                                <mat-option *ngFor="let material of materials" [value]="material">{{material.value |
+                                    translate}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="registerCollectPoint.get('types_of_materials_accepted')?.hasError('required')">
+                                {{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field>
+                            <mat-label>{{'DELIVERY_TYPE' | translate}}</mat-label>
+                            <mat-select formControlName="delivery_type" multiple required>
+                                <mat-option *ngFor="let deliveryType of deliveryTypes" [value]="deliveryType">
+                                    {{deliveryType.value | translate}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="registerCollectPoint.get('delivery_type')?.hasError('required')">
+                                {{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-3">
+                        <div class="md-form">
+                            <label for="input" id="label">{{'HOUR' | translate}}</label>
+                            <input autocomplete="off" type="time" class="form-control input" formControlName="start_hours" required
+                                mdbInput />
+                            <mat-error *ngIf="registerCollectPoint.get('start_hours')?.hasError('required')">
+                                {{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="md-form">
+                            <label for="input" id="label">{{'HOUR' | translate}}</label>
+                            <input autocomplete="off" type="time" class="form-control input" formControlName="end_hours" required
+                                mdbInput />
+                            <mat-error *ngIf="registerCollectPoint.get('end_hours')?.hasError('required')">
+                                {{'REQUIRED_FIELD'
+                                | translate}}</mat-error>
+                        </div>
+                    </div>
+                    <mat-form-field class="textArea">
+                        <mat-label>{{'BIOGRAPHY' | translate}}</mat-label>
+                        <textarea matInput formControlName="biography" maxlength="400"></textarea>
+                    </mat-form-field>
+                    <div class="col-12">
+                        <button mat-button type="button" class="btn btn-success btnContinue"
+                            [disabled]="registerCollectPoint.invalid" (click)="saveCollectPoint()">
+                            {{'REGISTER' |
+                            translate}}</button>
+                    </div>
+                </div>
+            </form>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

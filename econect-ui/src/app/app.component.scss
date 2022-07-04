@@ -1,0 +1,20 @@
+$color-base2: #acbf60;
+$red: #be4e2b;
+$color-font: #fafafa;
+$font: "Montserrat", sans-serif;
+
+::ng-deep .mat-toolbar.mat-success {
+    background: $color-base2;
+    font-family: $font;
+    color: #FFFFFF
+}
+
+::ng-deep .mat-toolbar.mat-warn {
+    background: $red;
+    font-family: $font;
+}
+
+::ng-deep .mat-simple-snackbar-action {
+    color: $color-font;
+    font-family: $font;
+}

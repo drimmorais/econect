@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../econect-back/projeto-econect/econect-backend"
+		}
+	],
+	"settings": {
+		"sqltools.connections": [
+			{
+				"previewLimit": 50,
+				"server": "localhost",
+				"port": 5432,
+				"driver": "PostgreSQL",
+				"name": "econect",
+				"username": "localhost",
+				"password": "localhost",
+				"database": "econect"
+			}
+		]
+	}
+}

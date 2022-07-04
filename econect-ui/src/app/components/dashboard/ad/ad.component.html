@@ -1,0 +1,241 @@
+<div class="container">
+    <h2>{{'ANÚNCIOS' | translate}}</h2>
+    <div class="col-12">
+        <mat-card-actions><button class="mb-2 ml-2" (click)="openCreateAd(create)" *ngIf="isCollectPoint" mat-button>{{'+
+                CRIAR' |
+                translate}}</button>
+        </mat-card-actions>
+        <input type="text" [disabled]="noHasAd" id="searchBar" class="form-control">
+    </div>
+    <div class="content">
+
+        <div *ngIf="noHasAd">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="text-center pt-0 pb-3">Não há anúncios ativos no momento!</h2>
+                </div>
+                <div class="col-12">
+                    <div class="center"><img src="assets/img/freshair.png" alt=""></div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="!noHasAd" fxLayout="row wrap" class="justify-content-center" fxLayoutGap="16px grid">
+            <div fxFlex="33%" fxFlex.xs="100%" fxFlex.md="43%" *ngFor="let ad of adsActive">
+                <mat-card class="mat-elevation-z4">
+                    <img mat-card-image src="/assets/img/milk.png" alt="Photo of a Shiba Inu">
+                    <mat-card-content>
+                        <b>
+                            <p class="d-flex justify-content-center" id="title">{{ad.title}}</p>
+                        </b>
+                        <p>Quantidade: {{ad.quantity}}</p>
+                        <p>Valor: {{ad.price}}</p>
+                        <!-- <p>Nome do Ponto: Nome do Ponto</p> -->
+                    </mat-card-content>
+                    <mat-card-actions class="d-flex justify-content-center">
+                        <button mat-button *ngIf="!isCollectPoint" (click)="openModal(schedule, ad)">Agendar</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template class="modal" #schedule let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">AGENDAMENTO DE ENTREGA</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="scheduleForm">
+            <div class="center">
+                <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                    <mat-button-toggle (click)="selectDeliveryType('COMPANY')" value="COMPANY">Entrega no Local
+                    </mat-button-toggle>
+                    <mat-button-toggle (click)="selectDeliveryType('HOME')" value="HOME">Busca em Casa
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            <div class="row">
+                <div *ngIf="scheduleRecyclable" class="col-4">
+                    <div class="form-group">
+                        <label>Peso</label>
+                        <div class="input-group">
+                            <input class="form-control" type="number" placeholder="0" formControlName="weight">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!scheduleRecyclable" class="col-4">
+                    <div class="form-group">
+                        <label>Quantidade</label>
+                        <div class="input-group">
+                            <input class="form-control" type="number" placeholder="0" formControlName="amount">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>Data</label>
+                        <div class="input-group">
+                            <input class="form-control" type="date" formControlName="schedule_date" placeholder="dd/mm/yyyy" name="d2"
+                                [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>Hora</label>
+                        <div class="input-group">
+                            <input class="form-control" type="time" formControlName="schedule_hours" placeholder="dd/mm/yyyy" name="d2"
+                                [(ngModel)]="time" ngbDatepicker #d2="ngbDatepicker">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Observação</label>
+                <div class="input-group">
+                    <input class="form-control" type="text" formControlName="note" placeholder="Quer falar algo, para o ponto de coleta?">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+        <button id="btn" type="button" class="btn btn-outline-dark"
+            (click)="sendSchedule()">Concluir</button>
+    </div>
+</ng-template>
+
+<ng-template class="modal" #create let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">CRIAR ANÚNCIO</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="adForm">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label>Titulo</label>
+                        <div class="input-group">
+                            <input class="form-control" formControlName="title" type="text" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label>Tipo de anuncio</label>
+                        <div class="input-group">
+                            <ng-select (click)="getTypeAd()" class="select" formControlName="type" [items]="typeAd"
+                                [(ngModel)]="selectedTypeAd">
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>Vencimento do anúncio</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="dd/mm/yyyy" name="d2" [(ngModel)]="model2"
+                                ngbDatepicker #d2="ngbDatepicker" formControlName="closing_date">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button">
+                                    <mat-icon>calendar_today</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>Material é reciclável?</label>
+                        <div class="input-group">
+                            <ng-select (click)="getRecyclable()"  class="select" formControlName="isrecyclable" [items]="isRecyclable"
+                            [(ngModel)]="selectedIsRecyclable"></ng-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>Tipo de material</label>
+                        <div class="input-group">
+                            <ng-select class="select" [disabled]="true" formControlName="type_material" [items]="typeMaterial"
+                                [(ngModel)]="selectedTypeMaterial">
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>Material</label>
+                        <div class="input-group">
+                            <ng-select (click)="getMaterialById()" [disabled]="true"  class="select" formControlName="type_material_id" [items]="materialSelected"
+                                [(ngModel)]="selectedTypeMaterialId">
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf=(isRecyclableFlag) class="col-4">
+                    <div class="form-group">
+                        <label>Quatidade</label>
+                        <div class="input-group">
+                            <input class="form-control" formControlName="quantity" type="number" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf=(isRecyclableFlag) class="col-4">
+                    <div class="form-group">
+                        <label>Quatidade mínima aceita</label>
+                        <div class="input-group">
+                            <input class="form-control" formControlName="minimum" type="number" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf=(!isRecyclableFlag) class="col-4">
+                    <div class="form-group">
+                        <label>Pesos</label>
+                        <div class="input-group">
+                            <input class="form-control" formControlName="quantity" type="number" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf=(!isRecyclableFlag) class="col-4">
+                    <div class="form-group">
+                        <label>Peso mínimo aceito</label>
+                        <div class="input-group">
+                            <input class="form-control" formControlName="minimum" type="number" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>Preço</label>
+                        <div class="input-group">
+                            <mat-icon class="money"> attach_money</mat-icon>
+                            <input  class="form-control" formControlName="price" type="number" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="form-group">
+                        <label>Descrição do produto</label>
+                        <div class="input-group">
+                            <input class="form-control" formControlName="content" type="text" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+        <button id="btn" type="button" [disabled]="adForm.invalid" class="btn btn-outline-dark" (click)="createAd(adForm.value)">Concluir</button>
+    </div>
+</ng-template>

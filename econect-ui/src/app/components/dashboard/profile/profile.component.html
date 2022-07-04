@@ -1,0 +1,133 @@
+<div class="container">
+    <h2>{{'Meu Perfil' | translate}}</h2>
+    <div class="row">
+        <div class="header">
+            <div class="row">
+                <div class="card">
+                </div>
+                <div class="col">
+                    <h3>{{name}}</h3>
+                    <button class="btn btn-success">{{'Escolher Foto' | translate}}</button>
+                </div>
+            </div>
+            <br>
+            <br>
+
+        </div>
+        <div class="col-12">
+            <form [formGroup]="editForm">
+                <span class="d-flex justify-content-end">
+                    <button class="btn btn-success" (click)="edit()">{{'Editar Perfil' | translate}}</button>
+                </span>
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="inputEmail4">{{'Nome' | translate}}:</label>
+                        <input type="text" class="form-control" formControlName="name" placeholder="Email">
+                    </div>
+                    <div class="col-6">
+                        <label for="inputEmail4">{{'Username' | translate}}:</label>
+                        <input type="text" class="form-control" formControlName="username" placeholder="Username">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="inputPassword4">{{'EMAIL' | translate}}:</label>
+                        <input type="email" class="form-control" formControlName="email" placeholder="Password">
+                    </div>
+                    <div class="col-3">
+                        <label for="inputEmail4">{{'PHONE' | translate}}:</label>
+                        <input type="text" class="form-control" formControlName="phone" placeholder="Email">
+                    </div>
+                    <div class="col-3">
+                        <label for="inputEmail4">{{'CEP' | translate}}:</label>
+                        <input type="text" class="form-control" formControlName="zipcode" placeholder="Email">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="inputPassword4">{{'CITY' | translate}}:</label>
+                        <input type="city" class="form-control" formControlName="city" placeholder="Password">
+                    </div>
+                    <div class="col-3">
+                        <label for="inputEmail4">{{'STATE' | translate}}:</label>
+                        <input type="text" class="form-control" formControlName="uf" placeholder="Email">
+                    </div>
+                    <div class="col-3">
+                        <label for="inputEmail4">{{'NUMBER' | translate}}:</label>
+                        <input type="number" class="form-control" formControlName="number" placeholder="Email">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="inputPassword4">{{'STREET' | translate}}:</label>
+                        <input type="text" class="form-control" formControlName="street" placeholder="Password">
+                    </div>
+                    <div class="col-6">
+                        <label for="inputPassword4">{{'DISTRICT' | translate}}:</label>
+                        <input type="text" class="form-control" formControlName="district" placeholder="Password">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6" *ngIf="viewPermission">
+                        <label for="">Razão Social</label>
+                        <input type="text" formControlName="social_reason" class="form-control">
+                    </div>
+                    <div class="col-3" *ngIf="viewPermission">
+                        <label for="">Delivery Type</label>
+                        <input type="text" formControlName="delivery_type" class="form-control">
+                    </div>
+                    <div class="col-3" *ngIf="viewPermission">
+                        <label for="">Types Material</label>
+                        <select class="form-control" formControlName="types_of_materials_accepted" multiple required>
+                            <option *ngFor="let material of materials" [value]="material">{{material.value |
+                                translate}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3" *ngIf="viewPermission">
+                        <label for="inputPassword4">{{'HOUR' | translate}}:</label>
+                        <input type="text" class="form-control" formControlName="initialHour" placeholder="hOUR">
+                    </div>
+                    <div class="col-3" *ngIf="viewPermission">
+                        <label for="inputPassword4">{{'HOUR' | translate}}:</label>
+                        <input type="text" class="form-control" formControlName="finalHour" placeholder="hOUR">
+                    </div>
+                    <div class="col-3" *ngIf="viewPermission">
+                            <label>{{'DAY_OF_OPERATION' | translate}}</label>
+                            <select class="" formControlName="initial_date" required>
+                                <option *ngFor="let day of days" value="day">{{day.label | translate}}
+                                </option>
+                            </select>
+                    </div>
+                    <div class="col-3" *ngIf="viewPermission">
+                            <label>{{'DAY_OF_OPERATION' | translate}}</label>
+                            <select  class="form-control" formControlName="final_date" required>
+                                <option *ngFor="let day of days" [value]="day">{{day.label | translate}}
+                                </option>
+                            </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="inputPassword4">{{'BIOGRAPHY' | translate}}:</label>
+                        <input type="text" class="form-control" formControlName="biography" placeholder="BIO">
+                    </div>
+                </div>
+                <br>
+                <div class="save">
+                    <!-- <button id="btn-save" class="btn btn-success text-center">Salvar</button> -->
+                </div>
+            </form>
+            <div class="d-flex justify-content-center">
+                <button id="save" *ngIf="onEdit" class="btn btn-success text-center">Cancelar</button>
+                <button id="save" *ngIf="onEdit && !viewPermission" (click)="saveEditCitizen(editForm.value)"
+                    class="btn btn-success text-center">Salvar</button>
+                <button id="save" *ngIf="onEdit && viewPermission" (click)="saveEditCollectPoint(editForm.value)"
+                    class="btn btn-success text-center">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

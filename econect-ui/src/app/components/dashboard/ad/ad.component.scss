@@ -1,0 +1,190 @@
+$color-font: #fafafa;
+$color-base: #326700;
+$color-base2: #acbf60;
+$color-grey: #e7ebea;
+$pink: #eeb29c;
+$red: #be4e2b;
+$font: "Montserrat", sans-serif;
+
+.mat-card-image {
+    height: 200px;
+}
+
+.mat-card {
+    width: min(300px, 80vw);
+    margin-bottom: 20px;
+    margin-left: min(20px, 0px);
+}
+
+.content {
+    padding: 16px;
+}
+
+.flex-me {
+    display: inline-flex;
+    flex-flow: row wrap;
+    background: grey;
+}
+
+#title {
+    color: $color-base;
+    font-size: 18px;
+    font-family: $font;
+    font-weight: 600;
+}
+
+p {
+    color: $color-base;
+    font-size: 14px;
+    font-family: $font;
+    font-weight: bold;
+}
+
+.mat-button {
+    background-color: $color-base;
+    border-radius: 21px;
+    width: 120px;
+    color: $color-font;
+    font-family: $font;
+}
+
+.content {
+    margin-top: 5%;
+}
+
+h2 {
+    font-family: $font;
+    color: $color-base;
+    font-size: 20px;
+    font-weight: bolder;
+    padding-top: 50px;
+    padding-left: 20px;
+}
+
+#searchBar {
+    border-radius: 20px;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+    background-color: $color-grey;
+}
+
+form {
+    padding: 50px;
+    padding-top: 20px;
+}
+
+label {
+    font-family: $font;
+    color: $color-base;
+    font-weight: bold;
+}
+
+.ng-select {
+    width: 400px;
+}
+
+.calendar {
+    height: 38px;
+    background-color: $color-base2;
+    border: none;
+}
+
+.money{
+    height: 38px;
+    background-color: $color-base2;
+    border: none;
+    text-align: center;
+    padding-top: 6px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.mat-icon {
+    color: $color-font;
+}
+
+input,
+textarea {
+    border-color: $color-base2;
+}
+
+::ng-deep .ng-select .ng-select-container,
+::ng-deep .ng-dropdown-panel.ng-select-bottom {
+    border-color: $color-base2;
+}
+
+#btn {
+    font-family: $font;
+    font-weight: bold;
+    border-radius: 21px;
+    width: 30%;
+    border: none;
+    color: $color-font;
+    background-color: $color-base2;
+}
+
+.close {
+    background-color: transparent;
+    color: #326700;
+    bottom: 10px;
+}
+
+h4 {
+    font-family: $font;
+    color: $color-base;
+    font-size: 16px;
+    font-weight: bolder;
+    padding-top: 30px;
+    padding-left: 50px;
+}
+
+::ng-deep .mat-toolbar.mat-warn {
+    background:$color-base2;
+}
+
+::ng-deep .mat-simple-snackbar-action{
+    color: $color-font;
+}
+
+mat-button-toggle {
+    display: flexbox;
+    justify-content: center;
+    font-family: $font;
+    background-color: #bd593b;
+    font-weight: bolder;
+    color: $color-grey;
+    height: 35px;
+    font-size: min(12px, 2vw);
+}
+
+.center {
+    justify-content: center;
+    display: flex;
+    padding-bottom: 20px;
+}
+
+::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    bottom: 6px;
+}
+
+.mat-button-toggle-checked {
+    font-family: $font;
+    background-color: rgb(167, 39, 0);
+    font-weight: bolder;
+    color: $color-font;
+}
+
+.toggle-group2 {
+    bottom: 20px;
+    margin-left: min(200px, 5px);
+}
+
+.center img{
+    width: min(55%, 100%);
+}
+
+.center{
+    text-align: center;
+}

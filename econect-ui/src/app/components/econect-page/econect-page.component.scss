@@ -1,0 +1,106 @@
+$color-font: #fafafa;
+$color-base: #326700;
+$font: "Montserrat", sans-serif;
+
+.container .h1 {
+    padding-top: min(130px, 10vw);
+    padding-bottom: (10px);
+    color: $color-font;
+    font-size: min(84px, 12vw);
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-align: left;
+    font-family: $font;
+}
+
+.container h1 {
+    padding-top: min(20px, 1vw);
+    padding-bottom: (10px);
+    color: $color-font;
+    font-size: min(84px, 12vw);
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-align: left;
+    font-family: $font;
+}
+
+#div.img img {
+    width: 900px;
+}
+
+div div img {
+    padding-top: 50px;
+    width: 100%;
+}
+
+.btn-a {
+    border-radius: 90px;
+    width: min(205px, 40vw);
+    height: min(45px, 10vw);
+    padding-top: 4px;
+    font-weight: bolder;
+    color: $color-base;
+    min-width: 100px;
+    font-size: min(20px, 4vw);
+    font-family: $font;
+}
+
+.btn-b {
+    position: relative;
+    border-radius: 90px;
+    border: none;
+    width: min(155px, 30vw);
+    height: min(30px, 8vw);
+    padding-top: 4px;
+    font-weight: bolder;
+    min-width: 100px;
+    color: $color-font;
+    background-color: $color-base;
+    font-size: min(15px, 3vw);
+    font-family: $font;
+}
+
+.wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.card {
+    position: relative;
+    background-color: #e7ebea;
+}
+
+.h3 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: $color-base;
+    font-size: min(44px, 5vw);
+    font-weight: bold;
+    padding-top: min(220px, 15vw);
+    font-family: $font;
+}
+
+.card {
+    background-color: #81c441;
+    top: min(350px, 25vw);
+    border-radius: min(30px, 7vw);
+}
+
+.card-deck {
+    margin: 0 auto;
+    float: none;
+    width: min(450px, 45vw);
+    height: min(500px, 30vw);
+}
+
+.card-title {
+    font-size: min(18px, 4vw);
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: min(15px, 3vw);
+}

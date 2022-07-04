@@ -1,0 +1,133 @@
+$color-font: #fafafa;
+$color-base: #326700;
+$color-base2: #acbf60;
+$color-grey: #e7ebea;
+$pink: #eeb29c;
+$red: #be4e2b;
+$font: "Montserrat", sans-serif;
+
+h2 {
+    font-family: $font;
+    color: $color-base;
+    font-size: 20px;
+    font-weight: bolder;
+    padding-top: 30px;
+    padding-left: 20px;
+}
+
+mat-card {
+    background-color: $color-base2;
+    height: 55px;
+}
+
+#actions {
+    position: absolute;
+    padding-right: 20px;
+    right: 20px;
+}
+
+.title {
+    padding-bottom: 10px;
+    padding-left: 20px;
+    font-size: min(18px, 4vw);
+    font-weight: bold;
+    font-family: $font;
+    width: min(100%, 50%);
+}
+
+mat-icon {
+    size: 10px;
+    cursor: pointer;
+    color: $color-font;
+}
+
+p {
+    padding-top: 3px;
+    font-family: $font;
+    font-size: min(15px, 4vw);
+    font-weight: 600;
+    padding-right: 20px;
+    color: $color-font;
+}
+
+.configurations {
+    padding-top: 7%;
+}
+
+img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+h4 {
+    font-family: $font;
+    color: $color-base;
+    font-size: 16px;
+    font-weight: bolder;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+h3 {
+    font-family: $font;
+    color: $red;
+    font-size: 16px;
+    font-weight: bolder;
+    padding-top: 20px;
+    padding-left: 20px;
+    text-align: center;
+}
+
+h5 {
+    font-family: $font;
+    color: #1c1c1c;
+    font-size: 15px;
+    padding-left: 20px;
+    text-align: center;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+    background-color: $color-grey;
+}
+
+form {
+    padding: 50px;
+}
+
+label {
+    font-family: $font;
+    color: $color-base;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    border-color: $color-base2;
+}
+
+::ng-deep .ng-select .ng-select-container,
+::ng-deep .ng-dropdown-panel.ng-select-bottom {
+    border-color: $color-base2;
+}
+
+#btn, #btn-exc {
+    font-family: $font;
+    font-weight: bold;
+    width: 30%;
+    border: none;
+    color: $color-font;
+    background-color: $color-base2;
+}
+
+#btn-exc{
+    background-color: $red;
+}
+
+#btn-cancel {
+    background-color: $color-grey;
+    color: $color-base;
+    border-color: $color-base;
+}
