@@ -61,11 +61,11 @@ To the back-end the following technologies were used:
 
 This project was developed by:
 
-• Adrielle Morais: Web Developer of the Front-end layer, Project Manager and Product Owner;
+• Adrielle Morais: Front-end Developer, Project Manager and Product Owner;
 
 • Fellipe Costa Fagundes: Web Developer of the Back-end layer and Econect APIs;
 
-• Guilherme Luiz Massini: Web Developer of the Back-end layer and Administrator of the database;
+• Guilherme Luiz Massini: Back-end Developer and Administrator of the database;
 
 ## Awards
 
